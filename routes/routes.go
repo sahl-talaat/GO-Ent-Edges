@@ -29,5 +29,10 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.GET("pets", controller.GetPets)
 		v1.POST("pets/:ownerID", controller.CreatePet)
 		v1.GET("pets/:id", controller.GetPet)
+
+		v1.POST("tree", controller.CreateTreeItem)
+		v1.GET("tree/:id", controller.GetTreeItem)
+		v1.POST("tree/:nodeID/:parentID", controller.SetParent)
+		v1.GET("tree/leaf", controller.GetLeafNodes)
 	}
 }
