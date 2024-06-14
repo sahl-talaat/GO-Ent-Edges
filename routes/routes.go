@@ -14,6 +14,7 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.GET("users/:id", controller.GetUser)
 		v1.PUT("users/:id", controller.UpdateUser)
 		v1.DELETE("users/:id", controller.DeleteUser)
+		v1.POST("/user/:userID/spouse/:spouseID", controller.SetSpouse)
 
 		v1.GET("cards", controller.GetCards)
 		v1.POST("cards/:ownerid", controller.CreateCard)

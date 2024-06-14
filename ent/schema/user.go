@@ -22,17 +22,15 @@ func (User) Fields() []ent.Field {
 // Edges of the User.
 func (User) Edges() []ent.Edge {
 	return []ent.Edge{
-		// one to many
-		// user can have many pets
-		edge.To("pets", Pet.Type),
-
-		// many to many
-		// user can have many groups
-		edge.From("groups", Group.Type).Ref("users"),
-
-		// one to one
+		// one to one 'Two Types'
 		// user can have only one cart
+		// User(ID-PK, ...)
 		edge.To("card", Card.Type),
+
+		// one to one 'Bidirectional'
+		// user can have only one spouse
+		// User(ID-PK, ..., Spouse-ID)
+		edge.To("spouse", User.Type).Unique(),
 	}
 }
 
