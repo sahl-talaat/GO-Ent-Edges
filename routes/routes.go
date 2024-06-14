@@ -34,5 +34,12 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.GET("tree/:id", controller.GetTreeItem)
 		v1.POST("tree/:nodeID/:parentID", controller.SetParent)
 		v1.GET("tree/leaf", controller.GetLeafNodes)
+
+		v1.GET("/groups", controller.GetGroups)
+		v1.POST("/groups", controller.CreateGroup)
+		v1.GET("/groups/:id", controller.GetGroup)
+		v1.POST("/groups/:groupId/users/:userId", controller.AddUserToGroup)
+		v1.DELETE("/groups/:groupId/users/:userId", controller.RemoveUserFromGroup)
+
 	}
 }

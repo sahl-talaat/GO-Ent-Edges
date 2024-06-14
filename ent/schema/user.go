@@ -36,6 +36,11 @@ func (User) Edges() []ent.Edge {
 		// user can have many pets
 		// User(ID-PK, ...)
 		edge.To("pets", Pet.Type).Unique(),
+
+		// many to many 'Two Type'
+		// group can have many user
+		// User(ID-PK, ...) & User-Group(user-ID-PK, group-ID-PK, ....) 'new table'
+		edge.From("groups", Group.Type).Ref("users"),
 	}
 }
 

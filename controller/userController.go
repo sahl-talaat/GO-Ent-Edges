@@ -11,7 +11,7 @@ import (
 )
 
 func GetUsers(c *gin.Context) {
-	users, err := config.Client.User.Query().WithCard().All(c)
+	users, err := config.Client.User.Query().WithCard().WithGroups().WithPets().WithSpouse().All(c)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
@@ -26,7 +26,7 @@ func GetUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid User ID"})
 		return
 	}
-	usr, err := /* config.Client.User.Get(c, userID) */ config.Client.User.Query().Where(user.ID(userID)).WithCard().Only(c)
+	usr, err := /* config.Client.User.Get(c, userID) */ config.Client.User.Query().Where(user.ID(userID)).WithCard().WithGroups().WithPets().WithSpouse().Only(c)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
@@ -145,3 +145,26 @@ func SetSpouse(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Spouse set successfully", "user": usr, "spouse": spose})
 
 }
+
+/* func JoinGroup(c *gin.Context) {
+	usrID, err := strconv.Atoi(c.Param("userID"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid user ID"})
+		return
+	}
+	usr, err := config.Client.User.Get(c, usrID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	grpID, err := strconv.Atoi(c.Param("groupID"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid group ID"})
+		return
+	}
+	grp, err := config.Client.Group.Get(c, grpID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+} */
