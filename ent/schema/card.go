@@ -23,9 +23,11 @@ func (Card) Fields() []ent.Field {
 // Edges of the Card.
 func (Card) Edges() []ent.Edge {
 	return []ent.Edge{
-		// one to one
+		// one to one 'Two Type'
 		// card can have only one user
+		// Card(ID-PK, ...., owner-id-FK)
 		edge.From("owner", User.Type).Ref("card").Unique().Required(),
-		/* .SetOwnerid()'user */
+		/* .SetOwnerid(user.ID)' */
+
 	}
 }

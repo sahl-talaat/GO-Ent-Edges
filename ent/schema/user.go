@@ -31,6 +31,11 @@ func (User) Edges() []ent.Edge {
 		// user can have only one spouse
 		// User(ID-PK, ..., Spouse-ID)
 		edge.To("spouse", User.Type).Unique(),
+
+		// one to many 'Two Type'
+		// user can have many pets
+		// User(ID-PK, ...)
+		edge.To("pets", Pet.Type).Unique(),
 	}
 }
 

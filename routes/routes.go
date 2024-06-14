@@ -25,5 +25,9 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.GET("nodes", controller.GetNodes)
 		v1.POST("nodes", controller.CreateNode)
 		v1.GET("nodes/:id", controller.GetNode)
+
+		v1.GET("pets", controller.GetPets)
+		v1.POST("pets/:ownerID", controller.CreatePet)
+		v1.GET("pets/:id", controller.GetPet)
 	}
 }
