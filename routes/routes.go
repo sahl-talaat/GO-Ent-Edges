@@ -14,13 +14,14 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.GET("users/:id", controller.GetUser)
 		v1.PUT("users/:id", controller.UpdateUser)
 		v1.DELETE("users/:id", controller.DeleteUser)
-		v1.POST("/user/:userID/spouse/:spouseID", controller.SetSpouse)
+
+		v1.POST("users/:userID/spouse/:spouseID", controller.SetSpouse)
+		v1.POST("follow/:followerId/follow/:followeeId", controller.FollowUser)
+		v1.DELETE("follow/:followerId/unfollow/:followeeId", controller.UnfollowUser)
 
 		v1.GET("cards", controller.GetCards)
 		v1.POST("cards/:ownerid", controller.CreateCard)
-		v1.GET("cards/:id", controller.GetCard) /*
-			v1.PUT("cards/:id", controller.Upda)
-			v1.DELETE("cards/:id", controller.DeleteUser) */
+		v1.GET("cards/:id", controller.GetCard)
 
 		v1.GET("nodes", controller.GetNodes)
 		v1.POST("nodes", controller.CreateNode)

@@ -41,6 +41,11 @@ func (User) Edges() []ent.Edge {
 		// group can have many user
 		// User(ID-PK, ...) & User-Group(user-ID-PK, group-ID-PK, ....) 'new table'
 		edge.From("groups", Group.Type).Ref("users"),
+
+		// many to many 'Same Type'
+		// user can follow many users and can have many followers
+		// User(ID-PK, ...) & Followers(User-ID+Following-ID-PK)
+		edge.To("following", User.Type).From("followers"),
 	}
 }
 
